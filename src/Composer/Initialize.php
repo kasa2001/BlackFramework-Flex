@@ -32,7 +32,7 @@ class Initialize implements PluginInterface
         try {
             $manager->download(
                 $package,
-                "src"
+                "./"
             );
 
 
