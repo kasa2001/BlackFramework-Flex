@@ -15,14 +15,18 @@
         }
     },
     "license": "MIT",
+
     "authors": [
         {
             "name": "Paweł Gomółka",
             "email": "pawelgomolka@interia.pl"
         }
     ],
+
     "minimum-stability": "dev",
+
     "prefer-stable": true,
+
     "extra": {
         "class": "BlackFramework\\Flex\\Composer\\Initialize"
     }
