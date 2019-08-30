@@ -1,0 +1,25 @@
+{
+    "name": "blackframework/flex",
+    "description": "Package for creating web-skeleton",
+    "type": "composer-plugin",
+    "require": {
+        "php": "^7.0",
+        "composer-plugin-api": "^1.0"
+    },
+    "require-dev": {
+        "composer/composer": "^1.0.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "BlackFramework\\Flex" : "src"
+        }
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Paweł Gomółka",
+            "email": "pawelgomolka@interia.pl"
+        }
+    ],
+    "minimum-stability": "dev"
+}
