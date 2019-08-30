@@ -4,7 +4,6 @@
 namespace BlackFramework\Flex\Composer;
 
 use Composer\Composer;
-use Composer\Downloader\FileDownloader;
 use Composer\IO\IOInterface;
 use Composer\Package\Package;
 use Composer\Plugin\PluginInterface;
@@ -14,17 +13,24 @@ class Initialize implements PluginInterface
     public function activate(Composer $composer, IOInterface $io)
     {
 
-        $manager = new FileDownloader($io, $composer->getConfig());
+        $manager = $composer->getDownloadManager();
+
+        $package = new Package(
+            "blackframework\\website-files",
+            "1.0",
+            "1.0"
+        );
+
+        $package->setSourceUrl("https://github.com/kasa2001/BlackFrameowrk-WebsiteFiles.git");
+        $package->setSourceType("git");
 
         try {
             $manager->download(
-                new Package(
-                    "blackframework\\website-files",
-                    "*",
-                    "*"
-                ),
+                $package,
                 "src"
             );
+
+
         } catch (\InvalidArgumentException $e) {
             echo $e->getMessage();
         } catch (\Throwable $e) {
