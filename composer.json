@@ -22,5 +22,8 @@
         }
     ],
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "extra": {
+        "class": "BlackFramework\\Flex\\Composer\\Initialize"
+    }
 }
