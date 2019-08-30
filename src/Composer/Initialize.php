@@ -22,6 +22,7 @@ class Initialize implements PluginInterface
         );
         $package->setDistUrl("https://github.com/kasa2001/BlackFrameowrk-WebsiteFiles.git");
         $package->setDistType('git');
+        $package->setSourceReference('master');
 
         $package->setSourceUrl("https://github.com/kasa2001/BlackFrameowrk-WebsiteFiles.git");
         $package->setSourceType("git");
