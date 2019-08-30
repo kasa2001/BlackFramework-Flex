@@ -17,15 +17,17 @@ class Initialize implements PluginInterface
 
         $package = new Package(
             "blackframework\\website-files",
-            "1.0",
-            "1.0"
+            "master",
+            "master"
         );
-        $package->setDistUrl("https://github.com/kasa2001/BlackFrameowrk-WebsiteFiles.git");
-        $package->setDistType('git');
-        $package->setSourceReference('master');
+        //
+        $package->setDistUrl("https://github.com/kasa2001/BlackFrameowrk-WebsiteFiles/archive/master.zip");
+        $package->setDistType('zip');
 
         $package->setSourceUrl("https://github.com/kasa2001/BlackFrameowrk-WebsiteFiles.git");
         $package->setSourceType("git");
+        $package->setSourceReference('master');
+
 
         try {
             $manager->download(
