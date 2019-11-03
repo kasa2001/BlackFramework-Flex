@@ -4,7 +4,8 @@
     "type": "composer-plugin",
     "require": {
         "php": "^7.0",
-        "composer-plugin-api": "^1.0"
+        "composer-plugin-api": "^1.0",
+        "ext-json": "*"
     },
     "require-dev": {
         "composer/composer": "^1.0.2"

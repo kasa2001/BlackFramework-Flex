@@ -3,6 +3,7 @@
 
 namespace BlackFramework\Flex\Composer;
 
+use BlackFramework\Flex\Composer\Model\Json;
 use Composer\Composer;
 use Composer\IO\IOInterface;
 use Composer\Package\Package;
@@ -12,6 +13,32 @@ class Initialize implements PluginInterface
 {
     public function activate(Composer $composer, IOInterface $io)
     {
+        $config = $composer->getConfig();
+
+        $init = new Json();
+
+        $init->type = 'project';
+        $init->license = 'proprietary';
+        $init->require = [
+            "php" => "",
+            "blackframework/core" => "1.*",
+            "blackframework/routing" => "1.*",
+        ];
+
+        $init->autoload = [
+            "psr-4" => [
+                "App\\\\" => "src/"
+            ]
+        ];
+
+
+        $init->autoloadDev = [
+            "psr-4" => [
+                "Tests\\\\" => "tests/"
+            ]
+        ];
+
+        file_put_contents("composer.json", json_encode($init));
 
         $manager = $composer->getDownloadManager();
 
@@ -20,7 +47,7 @@ class Initialize implements PluginInterface
             "master",
             "master"
         );
-        //
+
         $package->setDistUrl("https://github.com/kasa2001/BlackFrameowrk-WebsiteFiles/archive/master.zip");
         $package->setDistType('zip');
 
@@ -34,8 +61,6 @@ class Initialize implements PluginInterface
                 $package,
                 "./"
             );
-
-
         } catch (\InvalidArgumentException $e) {
             echo $e->getMessage();
         } catch (\Throwable $e) {
