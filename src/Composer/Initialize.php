@@ -42,6 +42,9 @@ class Initialize implements PluginInterface
             die(255);
         }
 
+        if (!class_exists("BlackFramework\\Flex\\Composer\\Model\\Json")) {
+            echo "Couldn't find JSON class";
+        }
         $init = new Json();
 
         $init->type = 'project';
