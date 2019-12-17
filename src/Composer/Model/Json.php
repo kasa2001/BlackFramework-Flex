@@ -26,4 +26,28 @@ class Json implements JsonSerializable
         ];
     }
 
+    public function toString()
+    {
+        $array = $this->jsonSerialize();
+
+        $string = "{\n";
+
+        foreach ($array as $key => $item) {
+            if (!empty($item)) {
+
+                if (is_array($item)) {
+                    $string .= "\t{$key}: {\n";
+                    foreach ($item as $key2 => $value) {
+                        $string .= "\t\t{$key2}: \"{$value}\"\n";
+                    }
+                    $string .= "\t}\n";
+                } else if (is_string($item)) {
+                    $string .= "\t{$key}: \"{$item}\"\n";
+                }
+            }
+        }
+
+        return $string;
+    }
+
 }

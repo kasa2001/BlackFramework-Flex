@@ -70,9 +70,7 @@ class Initialize implements PluginInterface
             ]
         ];
 
-        var_dump($init);
-
-        file_put_contents("composer.json", json_encode($init));
+        file_put_contents("composer.json", $init->toString());
 
     }
 
