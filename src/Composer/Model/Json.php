@@ -51,18 +51,23 @@ class Json implements JsonSerializable
 
     protected function arrayChange($array, $deep = 1)
     {
+        $tab = "\t";
+        for($i = 0; $i < $deep; $i++) {
+            $tab .= "\t";
+        }
+
         $string = "";
         foreach ($array as $key => $value) {
             if (!empty($string)) {
                 $string .= "\n";
             }
             if (is_array($value)) {
-                $string .= "\t\t\"{$key}\": {\n";
+                $string .= "{$tab}\"{$key}\": {\n";
                 $string .= $this->arrayChange($value, $deep + 1);
-                $string .= "\n\t\t},";
+                $string .= "\n{$tab}},";
                 continue;
             }
-            $string .= "\t\t\"{$key}\": \"{$value}\",";
+            $string .= "{$tab}\"{$key}\": \"{$value}\",";
         }
 
         return trim($string, ",\n");
