@@ -59,7 +59,7 @@ class Json implements JsonSerializable
             if (is_array($value)) {
                 $string .= "\t\t\"{$key}\": {\n";
                 $string .= $this->arrayChange($value, $deep + 1);
-                $string .= "\t\t\},";
+                $string .= "\n\t\t},";
                 continue;
             }
             $string .= "\t\t\"{$key}\": \"{$value}\",";
