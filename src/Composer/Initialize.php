@@ -13,33 +13,6 @@ class Initialize implements PluginInterface
 {
     public function activate(Composer $composer, IOInterface $io)
     {
-        $config = $composer->getConfig();
-
-        $init = new Json();
-
-        $init->type = 'project';
-        $init->license = 'proprietary';
-        $init->require = [
-            "php" => "7.*",
-            "blackframework/core" => "1.*",
-            "blackframework/routing" => "1.*",
-        ];
-
-        $init->autoload = [
-            "psr-4" => [
-                "App\\\\" => "src/"
-            ]
-        ];
-
-
-        $init->autoloadDev = [
-            "psr-4" => [
-                "Tests\\\\" => "tests/"
-            ]
-        ];
-
-        file_put_contents("composer.json", json_encode($init));
-
         $manager = $composer->getDownloadManager();
 
         $package = new Package(
@@ -67,6 +40,33 @@ class Initialize implements PluginInterface
             echo "Undefined exception: " . $e->getMessage();
             die(255);
         }
+
+        $init = new Json();
+
+        $init->type = 'project';
+        $init->license = 'proprietary';
+        $init->require = [
+            "php" => "7.*",
+            "blackframework/core" => "1.*",
+            "blackframework/routing" => "1.*",
+        ];
+
+        $init->autoload = [
+            "psr-4" => [
+                "App\\\\" => "src/"
+            ]
+        ];
+
+
+        $init->autoloadDev = [
+            "psr-4" => [
+                "Tests\\\\" => "tests/"
+            ]
+        ];
+
+        var_dump($init);
+        
+        file_put_contents("composer.json", json_encode($init));
 
     }
 
