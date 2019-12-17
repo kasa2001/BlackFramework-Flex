@@ -62,7 +62,7 @@ class Json implements JsonSerializable
             $string .= "\t\t\"{$key}\": \"{$value}\",\n";
         }
 
-        return trim($string, ",\\\n");
+        return trim($string, ",\n\\");
     }
 
 }
