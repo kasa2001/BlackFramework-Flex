@@ -37,7 +37,7 @@ class Json implements JsonSerializable
             if (!empty($item)) {
 
                 if (is_array($item)) {
-                    $string .= "\t{$key}: {\n";
+                    $string .= "\t\"{$key}\": {\n";
                     $string .= $this->arrayChange($item);
                     $string .= "\n\t},";
                 } else if (is_string($item)) {
@@ -54,10 +54,12 @@ class Json implements JsonSerializable
         $string = "";
         foreach ($array as $key => $value) {
             if (is_array($value)) {
+                $string .= "\t\t\"{$key}\": {\n";
                 $string .= $this->arrayChange($value, $deep + 1);
+                $string .= "\t\t\},\n";
                 continue;
             }
-            $string .= "\t\t{$key}: \"{$value}\",\n";
+            $string .= "\t\t\"{$key}\": \"{$value}\",\n";
         }
 
         return trim($string, ",\n");
