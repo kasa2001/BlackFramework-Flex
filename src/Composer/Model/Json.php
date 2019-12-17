@@ -41,7 +41,7 @@ class Json implements JsonSerializable
                     $string .= $this->arrayChange($item);
                     $string .= "\n\t},";
                 } else if (is_string($item)) {
-                    $string .= "\t{$key}: \"{$item}\",";
+                    $string .= "\t\"{$key}\": \"{$item}\",";
                 }
             }
         }
@@ -62,7 +62,7 @@ class Json implements JsonSerializable
             $string .= "\t\t\"{$key}\": \"{$value}\",\n";
         }
 
-        return trim($string, ",\n");
+        return trim($string, ",\\\n");
     }
 
 }
