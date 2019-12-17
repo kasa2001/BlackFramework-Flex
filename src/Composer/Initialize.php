@@ -3,6 +3,8 @@
 
 namespace BlackFramework\Flex\Composer;
 
+require "Model/Json.php";
+
 use BlackFramework\Flex\Composer\Model\Json;
 
 use Composer\Composer;
