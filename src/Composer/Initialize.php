@@ -20,7 +20,7 @@ class Initialize implements PluginInterface
         $init->type = 'project';
         $init->license = 'proprietary';
         $init->require = [
-            "php" => "",
+            "php" => "7.*",
             "blackframework/core" => "1.*",
             "blackframework/routing" => "1.*",
         ];
@@ -43,7 +43,7 @@ class Initialize implements PluginInterface
         $manager = $composer->getDownloadManager();
 
         $package = new Package(
-            "blackframework\\website-files",
+            "blackframework/website-files",
             "master",
             "master"
         );
