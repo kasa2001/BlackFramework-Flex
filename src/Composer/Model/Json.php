@@ -39,14 +39,14 @@ class Json implements JsonSerializable
                 if (is_array($item)) {
                     $string .= "\t{$key}: {\n";
                     $string .= $this->arrayChange($item);
-                    $string .= "\t}\n";
+                    $string .= "\n\t},";
                 } else if (is_string($item)) {
                     $string .= "\t{$key}: \"{$item}\",";
                 }
             }
         }
 
-        return $string;
+        return trim($string, ",") . "\n}";
     }
 
     protected function arrayChange($array, $deep = 1)
@@ -60,7 +60,7 @@ class Json implements JsonSerializable
             $string .= "\t\t{$key}: \"{$value}\",\n";
         }
 
-        return trim($string, "\n");
+        return trim($string, ",\n");
     }
 
 }
