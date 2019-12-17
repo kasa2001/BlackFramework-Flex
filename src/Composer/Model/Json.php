@@ -53,16 +53,19 @@ class Json implements JsonSerializable
     {
         $string = "";
         foreach ($array as $key => $value) {
+            if (!empty($string)) {
+                $string .= "\n";
+            }
             if (is_array($value)) {
                 $string .= "\t\t\"{$key}\": {\n";
                 $string .= $this->arrayChange($value, $deep + 1);
-                $string .= "\t\t\},\n";
+                $string .= "\t\t\},";
                 continue;
             }
-            $string .= "\t\t\"{$key}\": \"{$value}\",\n";
+            $string .= "\t\t\"{$key}\": \"{$value}\",";
         }
 
-        return trim($string, ",\n\\");
+        return trim($string, ",\n");
     }
 
 }
