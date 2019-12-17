@@ -3,8 +3,9 @@
 
 namespace BlackFramework\Flex\Composer\Model;
 
+use JsonSerializable;
 
-class Json implements \JsonSerializable
+class Json implements JsonSerializable
 {
     public $type;
     public $license;
