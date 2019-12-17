@@ -30,24 +30,36 @@ class Json implements JsonSerializable
     {
         $array = $this->jsonSerialize();
 
-        $string = "{\n";
+        $string = "{";
 
         foreach ($array as $key => $item) {
+            $string .= "\n";
             if (!empty($item)) {
 
                 if (is_array($item)) {
                     $string .= "\t{$key}: {\n";
-                    foreach ($item as $key2 => $value) {
-                        $string .= "\t\t{$key2}: \"{$value}\"\n";
-                    }
+                    $string .= $this->arrayChange($item);
                     $string .= "\t}\n";
                 } else if (is_string($item)) {
-                    $string .= "\t{$key}: \"{$item}\"\n";
+                    $string .= "\t{$key}: \"{$item}\",";
                 }
             }
         }
 
         return $string;
+    }
+
+    protected function arrayChange($array, $deep = 1)
+    {
+        $string = "";
+        foreach ($array as $key => $value) {
+            if (is_array($array)) {
+                $string .= $this->arrayChange($value, $deep + 1);
+            }
+            $string .= "\t\t{$key}: \"{$value}\",\n";
+        }
+
+        return trim($string, "\n");
     }
 
 }
