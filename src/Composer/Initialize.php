@@ -3,7 +3,7 @@
 
 namespace BlackFramework\Flex\Composer;
 
-include "../../vendor/autoload.php";
+require "Model/Json.php";
 
 use BlackFramework\Flex\Composer\Model\Json;
 
