@@ -42,7 +42,7 @@ class Initialize implements PluginInterface
 
             $config = Factory::createConfig();
 
-            var_dump($config);
+            var_dump($config->get('vendor-dir'));
             die;
 
             $composerFile = Factory::getComposerFile();
