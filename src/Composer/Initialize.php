@@ -38,6 +38,11 @@ class Initialize implements PluginInterface
                 $package,
                 "./"
             );
+
+            $manager->install(
+                $package,
+                "./"
+            );
         } catch (InvalidArgumentException $e) {
             echo $e->getMessage();
         } catch (Throwable $e) {
