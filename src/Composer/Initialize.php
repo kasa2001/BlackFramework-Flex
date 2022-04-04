@@ -39,6 +39,10 @@ class Initialize implements PluginInterface
                 "./"
             );
 
+            $composerFile = \Composer\Factory::getComposerFile();
+
+            echo $composerFile;
+
             $manager->install(
                 $package,
                 __DIR__
