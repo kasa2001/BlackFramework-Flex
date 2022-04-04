@@ -42,16 +42,9 @@ class Initialize implements PluginInterface
 
             $config = Factory::createConfig();
 
-            var_dump($config->get('vendor-dir'));
-            die;
-
-            $composerFile = Factory::getComposerFile();
-
-            echo $composerFile;
-
             $manager->install(
                 $package,
-                dirname($composerFile)
+                dirname($config->get('vendor-dir'))
             );
         } catch (InvalidArgumentException $e) {
             echo $e->getMessage();
