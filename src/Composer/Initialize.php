@@ -18,6 +18,10 @@ class Initialize implements PluginInterface
 {
     public function activate(Composer $composer, IOInterface $io)
     {
+        $config = Factory::createConfig();
+
+        $vendorDir = $config->get('vendor-dir');
+
         $manager = $composer->getDownloadManager();
 
         $package = new Package(
@@ -37,20 +41,17 @@ class Initialize implements PluginInterface
         try {
             $manager->download(
                 $package,
-                "./"
+                dirname($vendorDir)
             );
-
-            $config = Factory::createConfig();
 
             $manager->install(
                 $package,
-                dirname($config->get('vendor-dir'))
+                dirname($vendorDir)
             );
         } catch (InvalidArgumentException $e) {
             echo $e->getMessage();
         } catch (Throwable $e) {
             echo "Undefined exception: " . $e->getMessage();
-            echo $e->getTraceAsString();
             die(255);
         }
 
