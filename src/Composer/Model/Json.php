@@ -14,7 +14,7 @@ class Json implements JsonSerializable
     public $autoload;
     public $autoloadDev;
 
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
         return [
             'type' => $this->type,
@@ -26,7 +26,7 @@ class Json implements JsonSerializable
         ];
     }
 
-    public function toString()
+    public function toString(): string
     {
         $array = $this->jsonSerialize();
 
@@ -37,11 +37,11 @@ class Json implements JsonSerializable
             if (!empty($item)) {
 
                 if (is_array($item)) {
-                    $string .= "\t\"{$key}\": {\n";
+                    $string .= "\t\"$key\": {\n";
                     $string .= $this->arrayChange($item);
                     $string .= "\n\t},";
                 } else if (is_string($item)) {
-                    $string .= "\t\"{$key}\": \"{$item}\",";
+                    $string .= "\t\"$key\": \"$item\",";
                 }
             }
         }
@@ -49,12 +49,10 @@ class Json implements JsonSerializable
         return trim($string, ",") . "\n}";
     }
 
-    protected function arrayChange($array, $deep = 1)
+    protected function arrayChange($array, $deep = 1): string
     {
         $tab = "\t";
-        for($i = 0; $i < $deep; $i++) {
-            $tab .= "\t";
-        }
+        $tab .= str_repeat("\t", $deep);
 
         $string = "";
         foreach ($array as $key => $value) {
@@ -62,12 +60,12 @@ class Json implements JsonSerializable
                 $string .= "\n";
             }
             if (is_array($value)) {
-                $string .= "{$tab}\"{$key}\": {\n";
+                $string .= "$tab\"$key\": {\n";
                 $string .= $this->arrayChange($value, $deep + 1);
-                $string .= "\n{$tab}},";
+                $string .= "\n$tab},";
                 continue;
             }
-            $string .= "{$tab}\"{$key}\": \"{$value}\",";
+            $string .= "$tab\"$key\": \"$value\",";
         }
 
         return trim($string, ",\n");

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace BlackFramework\Flex\Composer;
 
 require "Model/Json.php";
@@ -11,6 +10,8 @@ use Composer\Composer;
 use Composer\IO\IOInterface;
 use Composer\Package\Package;
 use Composer\Plugin\PluginInterface;
+use InvalidArgumentException;
+use Throwable;
 
 class Initialize implements PluginInterface
 {
@@ -37,9 +38,9 @@ class Initialize implements PluginInterface
                 $package,
                 "./"
             );
-        } catch (\InvalidArgumentException $e) {
+        } catch (InvalidArgumentException $e) {
             echo $e->getMessage();
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             echo "Undefined exception: " . $e->getMessage();
             die(255);
         }
@@ -74,4 +75,34 @@ class Initialize implements PluginInterface
 
     }
 
+
+    public function deactivate(Composer $composer, IOInterface $io)
+    {
+        $manager = $composer->getDownloadManager();
+
+        $package = new Package(
+            "blackframework/website-files",
+            "master",
+            "master"
+        );
+
+        $manager->remove($package, "./");
+
+        unlink('composer.json');
+    }
+
+    public function uninstall(Composer $composer, IOInterface $io)
+    {
+        $manager = $composer->getDownloadManager();
+
+        $package = new Package(
+            "blackframework/website-files",
+            "master",
+            "master"
+        );
+
+        $manager->remove($package, "./");
+
+        unlink('composer.json');
+    }
 }
