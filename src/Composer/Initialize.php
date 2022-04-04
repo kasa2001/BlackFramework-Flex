@@ -41,7 +41,7 @@ class Initialize implements PluginInterface
 
             $manager->install(
                 $package,
-                "."
+                __DIR__
             );
         } catch (InvalidArgumentException $e) {
             echo $e->getMessage();
