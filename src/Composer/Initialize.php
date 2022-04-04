@@ -7,6 +7,7 @@ require "Model/Json.php";
 use BlackFramework\Flex\Composer\Model\Json;
 
 use Composer\Composer;
+use Composer\Factory;
 use Composer\IO\IOInterface;
 use Composer\Package\Package;
 use Composer\Plugin\PluginInterface;
@@ -39,13 +40,13 @@ class Initialize implements PluginInterface
                 "./"
             );
 
-            $composerFile = \Composer\Factory::getComposerFile();
+            $composerFile = Factory::getComposerFile();
 
             echo $composerFile;
 
             $manager->install(
                 $package,
-                __DIR__
+                dirname($composerFile)
             );
         } catch (InvalidArgumentException $e) {
             echo $e->getMessage();
