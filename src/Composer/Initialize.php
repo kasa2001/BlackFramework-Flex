@@ -47,6 +47,7 @@ class Initialize implements PluginInterface
             echo $e->getMessage();
         } catch (Throwable $e) {
             echo "Undefined exception: " . $e->getMessage();
+            echo $e->getTraceAsString();
             die(255);
         }
 
